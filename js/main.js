@@ -1,19 +1,31 @@
 // CÓDIGO POO
 // crear un Objeto literal llamado studests
-var students = {
+'user stric'
+
+const students = {
     // método para validar los datos ingresados correctamente
-    dataCorrectStudents: function(estudiantes, nombre, puntajeTecnico, puntajeHs) {
-        estudiantes = [];
-        nombre = prompt("Ingrese el nombre de la estudiante");
-        puntajeTecnico = prompt("Ingrese el Porcentaje Técnico");
-        puntajeHs = prompt("Ingrese el puntaje de Habilidades Socio-Emocionales");
+    allStudents: [],
+    objStudents: function(nombre, porTec, porHse) {
+        // Objeto estudiante
+        this.nombre = nombre;
+        this.puntajeTecnico = porTec;
+        this.puntajeHse = porHse;
+    },
+    addStudents: function() {
+        var nombre = prompt("Ingrese el nombre de la estudiante");
+        var puntajeTecnico = prompt("Ingrese el Porcentaje Técnico");
+        var puntajeHs = prompt("Ingrese el puntaje de Habilidades Socio-Emocionales");
+    },
+
+    dataCorrectStudents: function() {
 
         if (nombre === "" || puntajeTecnico === "" || puntajeHse === "") {
             sweetAlert("Registro invalido", "Mensaje del sistema", "error");
         } else {
-            estudiantes.push(nombre, puntajeTecnico, puntajeHse);
+            this.allStudents.push(this.addStudents);
             swal("Estudiante Registrado", "Mensaje del sistema", "success");
         }
+        return this.estudiantes;
     },
     // método que muestra los estudiantes
     showStudents: function(resultado) {
@@ -29,28 +41,27 @@ var students = {
         resultado += "</div>";
         resultado += "</div>";
         resultado += "</div>";
-
     },
 
     // evento para el botón
     // método botones y eventos
-    btn: function(botonAgregar, botonMostrar, botonBuscar, botonTopTecnico, botonTopHSE, resultado) {
-        botonAgregar = document.getElementById("agregar").addEventListener("click", this.eventAdd);
-        botonMostrar = document.getElementById("mostrar").addEventListener("click", eventoMostrar);
-        botonBuscar = document.getElementById("buscar").addEventListener("click", eventoBuscar);
-        botonTopTecnico = document.getElementById("top-tecnico").addEventListener("click", eventoTopTecnico);
-        botonTopHSE = document.getElementById("top-hse").addEventListener("click", eventoTopHSE);
-        resultado = document.getElementById("contenedor-estudiantes");
+    btn: function() {
+        var botonAgregar = document.getElementById("agregar").addEventListener("click", this.eventAdd);
+        // botonMostrar = document.getElementById("mostrar").addEventListener("click", eventoMostrar);
+        // botonBuscar = document.getElementById("buscar").addEventListener("click", eventoBuscar);
+        // botonTopTecnico = document.getElementById("top-tecnico").addEventListener("click", eventoTopTecnico);
+        // botonTopHSE = document.getElementById("top-hse").addEventListener("click", eventoTopHSE);
+        // var resultado = document.getElementById("contenedor-estudiantes");
 
     },
     // evento para el botón agregar estudiante
-    eventAdd: function(e) {
-        e.preventDefault();
-        this.btn.botonAgregar.innerHTML = this.dataCorrectStudents;
+    eventAdd: function() {
+        document.getElementById("contenedor-estudiantes").innerHTML = this.dataCorrectStudents;
     },
 
-
 }
+students.btn();
+
 
 /////////////////*********************** */
 // +
