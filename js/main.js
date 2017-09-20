@@ -1,4 +1,31 @@
-function() {
+// CÓDIGO POO
+
+// crear un Objeto literal llamado studests
+// Se necesita sus principales métodos
+// método1: estudiantes en un arreglo vacío
+// método2: agregar estudiantes
+// método3: mostrar estudiantes
+var students = {
+    // propiedades de los estudiantes
+    nombre: prompt("Ingrese el nombre de la estudiante"),
+    puntajeTecnico: prompt("Ingrese el Prcentaje Técnico"),
+    puntajeHs: prompt("Ingrese el puntaje de Habilidades Socio-Emocionales"),
+    // método para validar los datos ingresados correctamente
+    DataCorrectStudents: function(estudiantes) {
+        var estudiantes = [];
+
+        if (this.nombre == "" || this.puntajeTecnico == "" || this.puntajeHse == "") {
+            sweetAlert("Registro invalido", "Mensaje del sistema", "error");
+        } else {
+            estudiantes.push(this.nombre, this.puntajeTecnico, this.puntajeHs);
+            swal("Estudiante Registrado", "Mensaje del sistema", "success");
+        }
+        return
+    }
+}
+
+/////////////////*********************** */
++ function() {
     // Elementos
     var botonAgregar = document.getElementById("agregar");
     var botonMostrar = document.getElementById("mostrar");
