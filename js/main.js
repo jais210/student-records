@@ -1,18 +1,17 @@
 // CÓDIGO POO
-
 // crear un Objeto literal llamado studests
 // Se necesita sus principales métodos
 // método1: estudiantes en un arreglo vacío
 // método2: agregar estudiantes
 // método3: mostrar estudiantes
 var students = {
-    // método botones
+    // método botones y eventos
     btn: function(botonAgregar, botonMostrar, botonBuscar, botonTopTecnico, botonTopHSE, resultado) {
-        botonAgregar = document.getElementById("agregar");
-        botonMostrar = document.getElementById("mostrar");
-        botonBuscar = document.getElementById("buscar");
-        botonTopTecnico = document.getElementById("top-tecnico");
-        botonTopHSE = document.getElementById("top-hse");
+        botonAgregar = document.getElementById("agregar").addEventListener("click", eventoAgregar);
+        botonMostrar = document.getElementById("mostrar").addEventListener("click", eventoMostrar);
+        botonBuscar = document.getElementById("buscar").addEventListener("click", eventoBuscar);
+        botonTopTecnico = document.getElementById("top-tecnico").addEventListener("click", eventoTopTecnico);
+        botonTopHSE = document.getElementById("top-hse").addEventListener("click", eventoTopHSE);
         resultado = document.getElementById("contenedor-estudiantes");
     },
     // propiedades de los estudiantes
@@ -22,7 +21,6 @@ var students = {
     // método para validar los datos ingresados correctamente
     dataCorrectStudents: function(estudiantes) {
         var estudiantes = [];
-
         if (this.nombre == "" || this.puntajeTecnico == "" || this.puntajeHse == "") {
             sweetAlert("Registro invalido", "Mensaje del sistema", "error");
         } else {
@@ -46,15 +44,13 @@ var students = {
         resultado += "</div>";
         resultado += "</div>";
         return resultado;
-
     },
     // evento para el botón agregar estudiante
     eventAdd: function(e) {
         e.preventDefault();
-        var estudiante = this.nombre,
-            this.puntajeTecnico,
-            this.showStudents.resultado.innerHTML = this.showStudents;
+        this.showStudents.resultado.innerHTML = this.showStudents;
     },
+    // evento
 
 }
 
