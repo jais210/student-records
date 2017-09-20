@@ -6,12 +6,21 @@
 // método2: agregar estudiantes
 // método3: mostrar estudiantes
 var students = {
+    // método botones
+    btn: function(botonAgregar, botonMostrar, botonBuscar, botonTopTecnico, botonTopHSE, resultado) {
+        botonAgregar = document.getElementById("agregar");
+        botonMostrar = document.getElementById("mostrar");
+        botonBuscar = document.getElementById("buscar");
+        botonTopTecnico = document.getElementById("top-tecnico");
+        botonTopHSE = document.getElementById("top-hse");
+        resultado = document.getElementById("contenedor-estudiantes");
+    },
     // propiedades de los estudiantes
     nombre: prompt("Ingrese el nombre de la estudiante"),
     puntajeTecnico: prompt("Ingrese el Prcentaje Técnico"),
     puntajeHs: prompt("Ingrese el puntaje de Habilidades Socio-Emocionales"),
     // método para validar los datos ingresados correctamente
-    DataCorrectStudents: function(estudiantes) {
+    dataCorrectStudents: function(estudiantes) {
         var estudiantes = [];
 
         if (this.nombre == "" || this.puntajeTecnico == "" || this.puntajeHse == "") {
@@ -21,11 +30,38 @@ var students = {
             swal("Estudiante Registrado", "Mensaje del sistema", "success");
         }
         return
-    }
+    },
+    // método que muestra los estudiantes
+    showStudents: function(resultado) {
+        resultado = "";
+        resultado += "<div class='row'>";
+        resultado += "<div class='col m12'>";
+        resultado += "<div class='card blue-grey darken-1'>";
+        resultado += "<div class='card-content white-text'>";
+        resultado += "<p><strong>Nombre:</strong> " + this.nombre + "</p>";
+        resultado += "<p><strong>Puntos Técnicos:</strong> " + this.puntajeTecnico + "</p>";
+        resultado += "<p><strong>Puntos HSE:</strong> " + this.puntajeHse + "</p>";
+        resultado += "</div>";
+        resultado += "</div>";
+        resultado += "</div>";
+        resultado += "</div>";
+        return resultado;
+
+    },
+    // evento para el botón agregar estudiante
+    eventAdd: function(e) {
+        e.preventDefault();
+        var estudiante = this.nombre,
+            this.puntajeTecnico,
+            this.showStudents.resultado.innerHTML = this.showStudents;
+    },
+
 }
 
 /////////////////*********************** */
-+ function() {
++
+
+function() {
     // Elementos
     var botonAgregar = document.getElementById("agregar");
     var botonMostrar = document.getElementById("mostrar");
