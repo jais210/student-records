@@ -14,7 +14,6 @@ var students = {
             estudiantes.push(nombre, puntajeTecnico, puntajeHse);
             swal("Estudiante Registrado", "Mensaje del sistema", "success");
         }
-        return estudiantes;
     },
     // método que muestra los estudiantes
     showStudents: function(resultado) {
@@ -30,17 +29,13 @@ var students = {
         resultado += "</div>";
         resultado += "</div>";
         resultado += "</div>";
-        return resultado;
+
     },
-    // evento para el botón agregar estudiante
-    eventAdd: function(e) {
-        e.preventDefault();
-        this.btn.botonAgregar.innerHTML = this.dataCorrectStudents.resultado;
-    },
+
     // evento para el botón
     // método botones y eventos
     btn: function(botonAgregar, botonMostrar, botonBuscar, botonTopTecnico, botonTopHSE, resultado) {
-        botonAgregar = document.getElementById("agregar").addEventListener("click", students.eventAdd);
+        botonAgregar = document.getElementById("agregar").addEventListener("click", this.eventAdd);
         botonMostrar = document.getElementById("mostrar").addEventListener("click", eventoMostrar);
         botonBuscar = document.getElementById("buscar").addEventListener("click", eventoBuscar);
         botonTopTecnico = document.getElementById("top-tecnico").addEventListener("click", eventoTopTecnico);
@@ -48,6 +43,12 @@ var students = {
         resultado = document.getElementById("contenedor-estudiantes");
 
     },
+    // evento para el botón agregar estudiante
+    eventAdd: function(e) {
+        e.preventDefault();
+        this.btn.botonAgregar.innerHTML = this.dataCorrectStudents;
+    },
+
 
 }
 
