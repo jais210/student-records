@@ -5,27 +5,26 @@
 const students = {
     // método para validar los datos ingresados correctamente
     allStudents: [],
-    objStudents: function(nombre, porTec, porHse) {
+    nombre: prompt("Ingrese el nombre de la estudiante"),
+    puntajeTecnico: prompt("Ingrese el Porcentaje Técnico"),
+    puntajeHs: prompt("Ingrese el puntaje de Habilidades Socio-Emocionales"),
+
+    objStudents: function() {
         // Objeto estudiante
         this.nombre = nombre;
         this.puntajeTecnico = porTec;
         this.puntajeHse = porHse;
     },
-    addStudents: function() {
-        var nombre = prompt("Ingrese el nombre de la estudiante");
-        var puntajeTecnico = prompt("Ingrese el Porcentaje Técnico");
-        var puntajeHs = prompt("Ingrese el puntaje de Habilidades Socio-Emocionales");
-    },
 
     dataCorrectStudents: function() {
 
-        if (nombre === "" || puntajeTecnico === "" || puntajeHse === "") {
+        if (this.nombre === "" || this.puntajeTecnico === "" || this.puntajeHse === "") {
             sweetAlert("Registro invalido", "Mensaje del sistema", "error");
         } else {
-            this.allStudents.push(this.addStudents);
+            this.allStudents.push(this.objStudents);
             swal("Estudiante Registrado", "Mensaje del sistema", "success");
         }
-        return this.estudiantes;
+        return this.allStudents;
     },
     // método que muestra los estudiantes
     showStudents: function(resultado) {
