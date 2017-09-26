@@ -1,6 +1,6 @@
 // CÓDIGO POO
-// crear un Objeto literal llamado studests
-'user strict'
+// crear una clase(objeto constructor)
+'use strict'
 class RecordStudents {
     // creo mi objeto constructor 
     constructor() {
@@ -76,17 +76,17 @@ class RecordStudents {
 
     // crea los eventos//OJo aquí llamanos a los eventos con arrow function para evitar el this por defecto de una función
     // si usamos this de manera pura, Js va a considerar otro scope de this mas no el que queremos
-    init() {
-        $("#agregar").click(() => this.eventAdd());
+    start() {
+        $("#add").click(() => this.eventAdd());
 
-        $('#agregando').click(() => this.refresh());
-        $('#mostrar').click(() => this.eventShow());
-        $('#empleables').click(() => this.eventEmployableStudents());
-        $('#eliminadas').click(() => this.eventRemove());
+        $('#refresh').click(() => this.refresh());
+        $('#print').click(() => this.eventShow());
+        $('#runEmployability').click(() => this.eventEmployableStudents());
+        $('#updateDropout').click(() => this.eventRemove());
     }
 }
 $(document).ready(() => {
 
     var appStudents = new RecordStudents();
-    RecordStudents.init();
+    RecordStudents.start();
 })
