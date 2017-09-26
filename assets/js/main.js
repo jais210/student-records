@@ -13,7 +13,7 @@ const recordStudents = {
             pointTech: pointTech,
             pointHse: pointHse
         }
-        this.students.push(student);
+        recordStudents.students.push(student);
         return student;
     },
     // función que muestra los estudiantes
@@ -30,11 +30,11 @@ const recordStudents = {
     },
     // función que muestra la lista de los estudiantes
     showList(students) {
-        return students.map(this.mostrar);
+        return students.map(recordStudents.mostrar);
     },
     // función que muestra los promedios de los estudiantes
     highPointStudents() {
-        return this.students.filter(e => ((e.pointHse + e.pointHse) / 2) >= 70);
+        return recordStudents.students.filter(e => ((e.pointHse + e.pointHse) / 2) >= 70);
     },
     // función que reinicia los valores ingresados
     refresh() {
@@ -48,17 +48,17 @@ const recordStudents = {
     },
     //muestra toda la lista de estudiantes
     eventShow() {
-        $("#fichas").html(this.showList(this.students));
+        $("#fichas").html(recordStudents.showList(recordStudents.students));
     },
     // muestra las estudiantes empleables
     eventEmployableStudents() {
-        let employable = this.highPointStudents();
-        $('#fichas').html(this.showList(employable));
+        let employable = recordStudents.highPointStudents();
+        $('#fichas').html(recordStudents.showList(employable));
     },
     // elimina a las estudiantes con promedio bajo
     eventRemove() {
-        this.students = this.highPointStudents();
-        $('#fichas').html(this.showList(this.students));
+        recordStudents.students = recordStudents.highPointStudents();
+        $('#fichas').html(recordStudents.showList(recordStudents.students));
     },
     // agrega
     eventoAdd() {
@@ -69,25 +69,20 @@ const recordStudents = {
             $("#nombre").next().css('visibility', 'visible');
         } else {
             $('#agregar').attr('data-dismiss', "modal");
-            let student = this.addStudent(name, pointTech, pointHse);
-            $("#fichas").html(this.show(student));
+            let student = recordStudents.addStudent(name, pointTech, pointHse);
+            $("#fichas").html(recordStudents.show(student));
         }
     },
 
     // crea los eventos//OJo aquí llamanos a los eventos con arrow function para evitar el this por defecto de una función
     // si usamos this de manera pura, Js va a considerar otro scope de this mas no el que queremos
     start() {
-        $("#add").click(() => this.eventAdd());
-        $('#refresh').click(() => this.refresh());
-        $('#print').click(() => this.eventShow());
-        $('#runEmployability').click(() => this.eventEmployableStudents());
-        $('#updateDropout').click(() => this.eventRemove());
+        $("#add").click(recordStudents.eventAdd());
+        $('#refresh').click(recordStudents.refresh());
+        $('#print').click(recordStudents.eventShow());
+        $('#runEmployability').click(recordStudents.eventEmployableStudents());
+        $('#updateDropout').click(recordStudents.eventRemove());
     }
 }
 
 $(document).ready(recordStudents.start);
-// $(document).ready(() => {
-
-//     // var recordStudents = new RecordStudents();
-//     // RecordStudents.start();
-// })
