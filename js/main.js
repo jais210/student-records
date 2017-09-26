@@ -1,10 +1,101 @@
 // CÓDIGO POO
 // crear un Objeto literal llamado studests
-'user stric'
+'user strict'
+class App {
+    // creo mi objeto constructor 
+    constructor() {
+            this.estudiantes = [];
+        }
+        // función que agrega estudiantes
+    agregarEstudiante(nombre, puntosTecnicos, puntosHSE) {
+            let estudiante = {
+                nombre: nombre,
+                puntosTecnicos: puntosTecnicos,
+                puntosHSE: puntosHSE
+            }
+            this.estudiantes.push(estudiante);
+            return estudiante;
+        }
+        // función que muestra los estudiantes
+    mostrar(estudiante) {
+            let fichaEstudiante = `
+            <div class = "estudiante">
+                <h3 class="text-uppercase">${estudiante.nombre}</h3>
+                <strong>Tech Skills:</strong> ${estudiante.puntosTecnicos}%<br>
+                <strong>Life Skills:</strong> ${estudiante.puntosHSE}%<br>
+                <strong>Status:</strong> Active<br>
+            </div>
+        `
+            return fichaEstudiante;
+        }
+        // función que muestra la lista de los estudiantes
+    mostrarLista(estudiantes) {
+            return estudiantes.map(this.mostrar);
+        }
+        // función que muestra los promedios de los estudiantes
+    estudiantesPromedioalto() {
+            return this.estudiantes.filter(a => ((a.puntosTecnicos + a.puntosHSE) / 2) >= 70);
+        }
+        // función que reinicia los valores ingresados
+    reiniciar() {
+            $('#puntosTecnicos').val('');
+            $('#puntosHSE').val('');
+            $("#nombre").val('');
+            $("#nombre").next().css('visibility', 'hidden');
+            $('#range').html(50);
+            $('#range2').html(50);
+            $('#agregar').removeAttr('data-dismiss');
+        }
+        //muestra toda la lista de estudiantes
+    eventoMostrar() {
+            $("#fichas").html(this.mostrarLista(this.estudiantes));
+        }
+        // muestra las estudiantes empleables
+    eventoMostrarEmpleables() {
+            let empleables = this.estudiantesPromedioalto();
+            $('#fichas').html(this.mostrarLista(empleables));
+        }
+        // elimina a las estudiantes con promedio bajo
+    eventoEliminar() {
+            this.estudiantes = this.estudiantesPromedioalto();
+            $('#fichas').html(this.mostrarLista(this.estudiantes));
+        }
+        // agrega
+    eventoAgregar() {
+        let nombre = $('#nombre').val();
+        let puntosTecnicos = parseInt($("#puntosTecnicos").val());
+        let puntosHSE = parseInt($("#puntosHSE").val());
+        if (nombre == '') {
+            $("#nombre").next().css('visibility', 'visible');
+        } else {
+            $('#agregar').attr('data-dismiss', "modal");
+            let estudiante = this.agregarEstudiante(nombre, puntosTecnicos, puntosHSE);
+            $("#fichas").html(this.mostrar(estudiante));
+        }
+    }
 
+    // crea los eventos//OJo aquí llamanos a los eventos con arrow function para evitar el this por defecto de una función
+    // si usamos this de manera pura, Js va a considerar otro scope de this mas no el que queremos
+    iniciar() {
+        $("#agregar").click(() => this.eventoAgregar());
+
+        $('#agregando').click(() => this.reiniciar());
+        $('#mostrar').click(() => this.eventoMostrar());
+        $('#empleables').click(() => this.eventoMostrarEmpleables());
+        $('#eliminadas').click(() => this.eventoEliminar());
+    }
+}
+$(document).ready(() => {
+
+    var app = new App();
+    app.iniciar();
+})
+
+/// mio mio 
 const students = {
     // método para validar los datos ingresados correctamente
     allStudents: [],
+
     nombre: prompt("Ingrese el nombre de la estudiante"),
     puntajeTecnico: prompt("Ingrese el Porcentaje Técnico"),
     puntajeHs: prompt("Ingrese el puntaje de Habilidades Socio-Emocionales"),
@@ -16,7 +107,7 @@ const students = {
         this.puntajeHse = porHse;
     },
 
-    dataCorrectStudents: function() {
+    dataCorrectStudents: () => {
 
         if (this.nombre === "" || this.puntajeTecnico === "" || this.puntajeHse === "") {
             sweetAlert("Registro invalido", "Mensaje del sistema", "error");
@@ -27,7 +118,7 @@ const students = {
         return this.allStudents;
     },
     // método que muestra los estudiantes
-    showStudents: function(resultado) {
+    showStudents: () => {
         resultado = "";
         resultado += "<div class='row'>";
         resultado += "<div class='col m12'>";
@@ -44,7 +135,7 @@ const students = {
 
     // evento para el botón
     // método botones y eventos
-    btn: function() {
+    btn: () => {
         var botonAgregar = document.getElementById("agregar").addEventListener("click", this.eventAdd);
         // botonMostrar = document.getElementById("mostrar").addEventListener("click", eventoMostrar);
         // botonBuscar = document.getElementById("buscar").addEventListener("click", eventoBuscar);
@@ -54,69 +145,15 @@ const students = {
 
     },
     // evento para el botón agregar estudiante
-    eventAdd: function() {
+    eventAdd: () => {
         document.getElementById("contenedor-estudiantes").innerHTML = this.dataCorrectStudents;
     },
 
 }
-students.btn();
+$(document).ready(students.inicio);
 
 
 /////////////////*********************** */
-// +
-
-// function() {
-//     // Elementos
-//     var botonAgregar = document.getElementById("agregar");
-//     var botonMostrar = document.getElementById("mostrar");
-//     var botonBuscar = document.getElementById("buscar");
-//     var botonTopTecnico = document.getElementById("top-tecnico");
-//     var botonTopHSE = document.getElementById("top-hse");
-//     var resultado = document.getElementById("contenedor-estudiantes");
-
-//     // Evento Click - Agregar
-//     var eventoAgregar = function(e) {
-//         e.preventDefault();
-//         var estudiante = agregarEstudiante();
-//         resultado.innerHTML = mostrar(estudiante);
-//     };
-
-//     var eventoMostrar = function(e) {
-//         e.preventDefault();
-//         var estudiantes = obtenerListaEstudiantes();
-//         resultado.innerHTML = mostrarLista(estudiantes);
-//     };
-
-//     var eventoBuscar = function(e) {
-//         e.preventDefault();
-//         var estudiantes = obtenerListaEstudiantes();
-//         var nombreEstudiante = prompt("¿Qué nombre desea buscar?");
-//         var estudianteBuscado = buscar(nombreEstudiante, estudiantes);
-//         resultado.innerHTML = mostrarLista(estudianteBuscado);
-//     };
-
-//     var eventoTopTecnico = function(e) {
-//         e.preventDefault();
-//         var estudiantes = obtenerListaEstudiantes();
-//         var estudiantesTopTecnico = topTecnico(estudiantes);
-//         resultado.innerHTML = mostrarLista(estudiantesTopTecnico);
-//     };
-
-//     var eventoTopHSE = function(e) {
-//         e.preventDefault();
-//         var estudiantes = obtenerListaEstudiantes();
-//         var estudiantesTopHSE = topHSE(estudiantes);
-//         resultado.innerHTML = mostrarLista(estudiantesTopHSE);
-//     };
-
-//     // Manejadores de eventos
-//     botonAgregar.addEventListener("click", eventoAgregar);
-//     botonMostrar.addEventListener("click", eventoMostrar);
-//     botonBuscar.addEventListener("click", eventoBuscar);
-//     botonTopTecnico.addEventListener("click", eventoTopTecnico);
-//     botonTopHSE.addEventListener("click", eventoTopHSE);
-// }();
-// ///-----------
 // var estudiantes = [];
 
 // function obtenerListaEstudiantes() {
@@ -222,4 +259,57 @@ students.btn();
 //     });
 // }
 
-///
+// /// DOM
+// +
+
+// function() {
+//     // Elementos
+//     var botonAgregar = document.getElementById("agregar");
+//     var botonMostrar = document.getElementById("mostrar");
+//     var botonBuscar = document.getElementById("buscar");
+//     var botonTopTecnico = document.getElementById("top-tecnico");
+//     var botonTopHSE = document.getElementById("top-hse");
+//     var resultado = document.getElementById("contenedor-estudiantes");
+
+//     // Evento Click - Agregar
+//     var eventoAgregar = function(e) {
+//         e.preventDefault();
+//         var estudiante = agregarEstudiante();
+//         resultado.innerHTML = mostrar(estudiante);
+//     };
+
+//     var eventoMostrar = function(e) {
+//         e.preventDefault();
+//         var estudiantes = obtenerListaEstudiantes();
+//         resultado.innerHTML = mostrarLista(estudiantes);
+//     };
+
+//     var eventoBuscar = function(e) {
+//         e.preventDefault();
+//         var estudiantes = obtenerListaEstudiantes();
+//         var nombreEstudiante = prompt("¿Qué nombre desea buscar?");
+//         var estudianteBuscado = buscar(nombreEstudiante, estudiantes);
+//         resultado.innerHTML = mostrarLista(estudianteBuscado);
+//     };
+
+//     var eventoTopTecnico = function(e) {
+//         e.preventDefault();
+//         var estudiantes = obtenerListaEstudiantes();
+//         var estudiantesTopTecnico = topTecnico(estudiantes);
+//         resultado.innerHTML = mostrarLista(estudiantesTopTecnico);
+//     };
+
+//     var eventoTopHSE = function(e) {
+//         e.preventDefault();
+//         var estudiantes = obtenerListaEstudiantes();
+//         var estudiantesTopHSE = topHSE(estudiantes);
+//         resultado.innerHTML = mostrarLista(estudiantesTopHSE);
+//     };
+
+//     // Manejadores de eventos
+//     botonAgregar.addEventListener("click", eventoAgregar);
+//     botonMostrar.addEventListener("click", eventoMostrar);
+//     botonBuscar.addEventListener("click", eventoBuscar);
+//     botonTopTecnico.addEventListener("click", eventoTopTecnico);
+//     botonTopHSE.addEventListener("click", eventoTopHSE);
+// }();
