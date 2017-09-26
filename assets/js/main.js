@@ -65,13 +65,9 @@ const recordStudents = {
         let name = prompt("escribe nombre");
         let pointTech = prompt("escribe puntaje técnico");
         let pointHse = prompt("escribe hse");
-        // if (name == '') {
-        //     $("#nombre").next().css('visibility', 'visible');
-        // } else {
-
         let student = recordStudents.addStudent(name, pointTech, pointHse);
         $("#fichas").html(student);
-        // }
+
     },
 
     // crea los eventos//OJo aquí llamanos a los eventos con arrow function para evitar el this por defecto de una función
