@@ -7,14 +7,14 @@ const recordStudents = {
     students: [],
 
     // función que agrega estudiantes
-    addStudent(name, pointTech, puntosHSE) {
+    addStudent(name, pointTech, pointHse) {
         let student = {
             name: name,
             pointTech: pointTech,
             pointHse: pointHse
         }
         recordStudents.students.push(student);
-        return student;
+        return recordStudents.show(student);
     },
     // función que muestra los estudiantes
     show(student) {
@@ -30,7 +30,7 @@ const recordStudents = {
     },
     // función que muestra la lista de los estudiantes
     showList(students) {
-        return students.map(recordStudents.mostrar);
+        return students.map(recordStudents.show);
     },
     // función que muestra los promedios de los estudiantes
     highPointStudents() {
@@ -61,27 +61,27 @@ const recordStudents = {
         $('#fichas').html(recordStudents.showList(recordStudents.students));
     },
     // agrega
-    eventoAdd() {
-        let name = $('#nombre').val();
-        let pointTech = parseInt($("#puntosTecnicos").val());
-        let pointHse = parseInt($("#puntosHSE").val());
-        if (name == '') {
-            $("#nombre").next().css('visibility', 'visible');
-        } else {
-            $('#agregar').attr('data-dismiss', "modal");
-            let student = recordStudents.addStudent(name, pointTech, pointHse);
-            $("#fichas").html(recordStudents.show(student));
-        }
+    eventAdd() {
+        let name = prompt("escribe nombre");
+        let pointTech = prompt("escribe puntaje técnico");
+        let pointHse = prompt("escribe hse");
+        // if (name == '') {
+        //     $("#nombre").next().css('visibility', 'visible');
+        // } else {
+
+        let student = recordStudents.addStudent(name, pointTech, pointHse);
+        $("#fichas").html(student);
+        // }
     },
 
     // crea los eventos//OJo aquí llamanos a los eventos con arrow function para evitar el this por defecto de una función
     // si usamos this de manera pura, Js va a considerar otro scope de this mas no el que queremos
     start() {
-        $("#add").click(recordStudents.eventAdd());
-        $('#refresh').click(recordStudents.refresh());
-        $('#print').click(recordStudents.eventShow());
-        $('#runEmployability').click(recordStudents.eventEmployableStudents());
-        $('#updateDropout').click(recordStudents.eventRemove());
+        $("#add").click(recordStudents.eventAdd);
+        // $('#refresh').click(recordStudents.refresh());
+        $('#print').click(recordStudents.eventShow);
+        $('#runEmployability').click(recordStudents.eventEmployableStudents);
+        $('#updateDropout').click(recordStudents.eventRemove);
     }
 }
 
