@@ -5,18 +5,48 @@ const  registro = {
     estudiantes: [],
     inicio:()=>{
         $('#btnAgregar').click(registro.agregarEstudiante);
+        $('#mostrar').click(registro.listarEstudiantes);
+        $('#')
+    
     },
     
     agregarEstudiante:()=>{
+        console.log("estudiantes")
         let datos = {
             nombre: $('#nombre').val(),
             puntajeTecnico:$('#puntajeTecnico').val(),
             puntajeHse: $('#puntajeHse').val()
-        }
+        };
+        $('#resultado').html(registro.mostrarEstudianteHtml(datos));
+        console.log(registro.mostrarEstudianteHtml(datos));
         registro.estudiantes.push(datos);
+        registro.limpiarInputs();
     },
+    mostrarEstudianteHtml:(datos)=>{
+        return (`
+        <p>${datos.nombre}</p>
+        <p>${datos.puntajeTecnico}</p>
+        <p>${datos.puntajeHse}</p>`);
+        
+    },
+    listarEstudiantes:()=>{
+        let t = "";
+        registro.estudiantes.map((estudiante)=>{
+            t += registro.mostrarEstudianteHtml(estudiante);
+        });
+        $('#resultado').html(t);
+    },
+    limpiarInputs:()=>{
+         $('#nombre').val(""),
+         $('#puntajeTecnico').val(""),
+         $('#puntajeHse').val("")
+    }
+    
+
+
 }
 
+$(document).ready(registro.inicio);
 
 
 
