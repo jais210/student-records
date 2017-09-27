@@ -1,4 +1,45 @@
 // // CÓDIGO POO
+'use strict'
+const  registro = {
+    //mi array de estudiantes.Se inicia vacío
+    estudiantes: [],
+    inicio:()=>{
+        $('#agregar').click(registro.agregarEstudiante);
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // crear un Objeto Literal
 // 'use strict';
 // const app = {
