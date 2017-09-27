@@ -56,9 +56,6 @@ const  registro = {
         });
         $('#resultado').html(concatenar);
     }
-    
-
-
 }
 
 $(document).ready(registro.inicio);
