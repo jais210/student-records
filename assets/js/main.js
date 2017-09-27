@@ -1,7 +1,7 @@
 // CÓDIGO POO
 // crear un Objeto Literal
 'use strict';
-const recordStudents = {
+const app = {
     // creo mi objeto constructor 
 
     students: [],
@@ -14,8 +14,8 @@ const recordStudents = {
             pointTech: pointTech,
             pointHse: pointHse
         }
-        recordStudents.students.push(student);
-        return recordStudents.show(student);
+        app.students.push(student);
+        return app.show(student);
     },
     // función que muestra los estudiantes
     show(student) {
@@ -30,43 +30,43 @@ const recordStudents = {
         return studentFile;
     },
     // función que muestra la lista de los estudiantes
-    showList(students) {
-        return students.map(recordStudents.show);
+    showList() {
+        return app.students.map(app.show);
     },
     // función que muestra los promedios de los estudiantes
     highPointStudents() {
-        return recordStudents.students.filter(e => ((e.pointHse + e.pointHse) / 2) >= 70);
+        return app.students.filter(e => ((e.app.addStudent.pointHse + e.app.addStudent.pointHse) / 2) >= 70);
     },
     // función que reinicia los valores ingresados
-    refresh() {
-        $('#puntosTecnicos').val('');
-        $('#puntosHSE').val('');
-        $("#nombre").val('');
-        $("#nombre").next().css('visibility', 'hidden');
-        $('#range').html(50);
-        $('#range2').html(50);
-        $('#agregar').removeAttr('data-dismiss');
-    },
+    // refresh() {
+    //     $('#puntosTecnicos').val('');
+    //     $('#puntosHSE').val('');
+    //     $("#nombre").val('');
+    //     $("#nombre").next().css('visibility', 'hidden');
+    //     $('#range').html(50);
+    //     $('#range2').html(50);
+    //     $('#agregar').removeAttr('data-dismiss');
+    // },
     //muestra toda la lista de estudiantes
     eventShow() {
-        $("#fichas").html(recordStudents.showList(recordStudents.students));
+        $("#fichas").html(app.showList(app.students));
     },
     // muestra las estudiantes empleables
     eventEmployableStudents() {
-        let employable = recordStudents.highPointStudents();
-        $('#fichas').html(recordStudents.showList(employable));
+        let employable = app.highPointStudents(app.students);
+        $('#fichas').html(app.showList(employable));
     },
     // elimina a las estudiantes con promedio bajo
     // eventRemove() {
-    //     recordStudents.students = recordStudents.highPointStudents();
-    //     $('#fichas').html(recordStudents.showList(recordStudents.students));
+    //     app.students = app.highPointStudents();
+    //     $('#fichas').html(app.showList(app.students));
     // },
     // agrega
     eventAdd() {
         let name = prompt("escribe nombre");
         let pointTech = prompt("escribe puntaje técnico");
         let pointHse = prompt("escribe hse");
-        let student = recordStudents.addStudent(name, pointTech, pointHse);
+        let student = app.addStudent(name, pointTech, pointHse);
         $("#fichas").html(student);
 
     },
@@ -74,12 +74,12 @@ const recordStudents = {
     // crea los eventos//OJo aquí llamanos a los eventos con arrow function para evitar el this por defecto de una función
     // si usamos this de manera pura, Js va a considerar otro scope de this mas no el que queremos
     start() {
-        $("#add").click(recordStudents.eventAdd);
-        // $('#refresh').click(recordStudents.refresh());
-        $('#print').click(recordStudents.eventShow);
-        $('#runEmployability').click(recordStudents.eventEmployableStudents);
-        $('#updateDropout').click(recordStudents.eventRemove);
+        $("#add").click(app.eventAdd);
+        // $('#refresh').click(app.refresh());
+        $('#print').click(app.eventShow);
+        $('#runEmployability').click(app.eventEmployableStudents);
+        $('#updateDropout').click(app.eventRemove);
     }
 }
 
-$(document).ready(recordStudents.start);
+$(document).ready(app.start);
