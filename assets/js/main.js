@@ -6,8 +6,8 @@ const  registro = {
     inicio:()=>{
         $('#btnAgregar').click(registro.agregarEstudiante);
         $('#mostrar').click(registro.listarEstudiantes);
-        $('#')
-    
+        $('#puntajeAlto').click(registro.mostrarAltosPuntajes);
+        $('#empleables').click(registro.mostrarEmpleables);
     },
     
     agregarEstudiante:()=>{
@@ -40,6 +40,20 @@ const  registro = {
          $('#nombre').val(""),
          $('#puntajeTecnico').val(""),
          $('#puntajeHse').val("")
+    },
+    mostrarAltosPuntajes:()=>{
+        let concatenar = "";
+        registro.estudiantes.filter((estudiante)=>{
+            return ((parseInt(estudiante.puntajeTecnico) + parseInt(estudiante.puntajeHse))/2 >= 70)? concatenar+= mostrarEstudianteHtml(estudiante):"";
+        });
+        $('#resultado').html(concatenar);
+    },
+    mostrarEmpleables:()=>{
+        let concatenar = "";
+        registro.estudiantes.filter((estudiante)=>{
+            return ((parseInt(estudiante.puntajeTecnico) + parseInt(estudiante.puntajeHse))/2 <= 70)? concatenar+= mostrarEstudianteHtml(estudiante):"";
+        });
+        $('#resultado').html(concatenar);
     }
     
 
