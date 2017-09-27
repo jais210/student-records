@@ -57,10 +57,10 @@ const recordStudents = {
         $('#fichas').html(recordStudents.showList(employable));
     },
     // elimina a las estudiantes con promedio bajo
-    eventRemove() {
-        recordStudents.students = recordStudents.highPointStudents();
-        $('#fichas').html(recordStudents.showList(recordStudents.students));
-    },
+    // eventRemove() {
+    //     recordStudents.students = recordStudents.highPointStudents();
+    //     $('#fichas').html(recordStudents.showList(recordStudents.students));
+    // },
     // agrega
     eventAdd() {
         let name = prompt("escribe nombre");
