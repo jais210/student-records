@@ -4,9 +4,13 @@ const  registro = {
     //mi array de estudiantes.Se inicia vacío
     estudiantes: [],
     inicio:()=>{
-        $('#agregar').click(registro.agregarEstudiante);
-    }
+        // $('#agregar').click(registro.agregarEstudiante);
+    },
     
+    agregarEstudiante:()=>{
+        let nombre = 1;
+
+    },
 }
 
 
