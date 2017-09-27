@@ -6,20 +6,21 @@ const  registro = {
     inicio:()=>{
         $('#btnAgregar').click(registro.agregarEstudiante);
         $('#mostrar').click(registro.listarEstudiantes);
-        $('#puntajeAlto').click(registro.mostrarAltosPuntajes);
+        $('#puntajeAlto').click(registro.mostrarBajosPuntajes);
         $('#empleables').click(registro.mostrarEmpleables);
     },
     
     agregarEstudiante:()=>{
         console.log("estudiantes")
-        let datos = {
+        if ($('#nombre').val() != '' && $('#puntajeTecnico').val()!="" && $('#puntajeHse').val()!=""){
+            let datos = {
             nombre: $('#nombre').val(),
             puntajeTecnico:$('#puntajeTecnico').val(),
             puntajeHse: $('#puntajeHse').val()
         };
         $('#resultado').html(registro.mostrarEstudianteHtml(datos));
         console.log(registro.mostrarEstudianteHtml(datos));
-        registro.estudiantes.push(datos);
+        registro.estudiantes.push(datos);}
         registro.limpiarInputs();
     },
     mostrarEstudianteHtml:(datos)=>{
@@ -41,17 +42,17 @@ const  registro = {
          $('#puntajeTecnico').val(""),
          $('#puntajeHse').val("")
     },
-    mostrarAltosPuntajes:()=>{
+    mostrarBajosPuntajes:()=>{
         let concatenar = "";
         registro.estudiantes.filter((estudiante)=>{
-            return ((parseInt(estudiante.puntajeTecnico) + parseInt(estudiante.puntajeHse))/2 >= 70)? concatenar+= mostrarEstudianteHtml(estudiante):"";
+            return ((parseInt(estudiante.puntajeTecnico) + parseInt(estudiante.puntajeHse))/2 <= 70)? concatenar+= registro.mostrarEstudianteHtml(estudiante):"";
         });
         $('#resultado').html(concatenar);
     },
     mostrarEmpleables:()=>{
         let concatenar = "";
         registro.estudiantes.filter((estudiante)=>{
-            return ((parseInt(estudiante.puntajeTecnico) + parseInt(estudiante.puntajeHse))/2 <= 70)? concatenar+= mostrarEstudianteHtml(estudiante):"";
+            return ((parseInt(estudiante.puntajeTecnico) + parseInt(estudiante.puntajeHse))/2 >= 70)? concatenar+= registro.mostrarEstudianteHtml(estudiante):"";
         });
         $('#resultado').html(concatenar);
     }
