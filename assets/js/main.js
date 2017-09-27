@@ -1,15 +1,19 @@
-// // CÓDIGO POO
+// CÓDIGO POO
 'use strict'
 const  registro = {
     //mi array de estudiantes.Se inicia vacío
     estudiantes: [],
     inicio:()=>{
-        // $('#agregar').click(registro.agregarEstudiante);
+        $('#btnAgregar').click(registro.agregarEstudiante);
     },
     
     agregarEstudiante:()=>{
-        let nombre = 1;
-
+        let datos = {
+            nombre: $('#nombre').val(),
+            puntajeTecnico:$('#puntajeTecnico').val(),
+            puntajeHse: $('#puntajeHse').val()
+        }
+        registro.estudiantes.push(datos);
     },
 }
 
