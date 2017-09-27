@@ -7,6 +7,7 @@ const recordStudents = {
     students: [],
 
     // función que agrega estudiantes
+
     addStudent(name, pointTech, pointHse) {
         let student = {
             name: name,
