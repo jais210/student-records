@@ -25,9 +25,10 @@ const  registro = {
     },
     mostrarEstudianteHtml:(datos)=>{
         return (`
-        <p>${datos.nombre}</p>
-        <p>${datos.puntajeTecnico}</p>
-        <p>${datos.puntajeHse}</p>`);
+        
+        <p>Nombres y Apellidos: ${datos.nombre}</p>
+        <p>Puntaje Técnico: ${datos.puntajeTecnico}</p>
+        <p>Puntaje Hse: ${datos.puntajeHse}</p>`);
         
     },
     listarEstudiantes:()=>{

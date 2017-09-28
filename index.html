@@ -14,23 +14,23 @@
 
 <body>
     <nav>
-        <div class="text center">
+        <div id="titulo" class="text-center embed-responsive">
             <h1>Registro de Estudiantes</h1>
         </div>
     </nav><br>
-    <section class="container-fluid">
-        <div class="row">
-            <div class="col-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Student</button>
+    <section id ="botones" class="container-fluid text-center embed-responsive">
+        <div class="row tex-center">
+            <div class="col-2 btn-responsive btninter centrado">
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Add Student</button>
             </div>
-            <div class="col-2">
-                <button id="mostrar"type="button" class="btn btn-primary">Print All</button>
+            <div class="col-2 btn-responsive btninter centrado">
+                <button id="mostrar"type="button" class="btn btn-warning">Print All</button>
             </div>
-            <div class="col-2">
-                <button id="puntajeAlto" type="button" class="btn btn-primary">Update Dropout</button>
+            <div class="col-2 btn-responsive btninter centrado">
+                <button id="puntajeAlto" type="button" class="btn btn-warning">Update Dropout</button>
             </div>
-            <div class="col-2">
-                <button id="empleables" type="button" class="btn btn-primary">Run Employability</button>
+            <div class="col-2 btn-responsive btninter centrado">
+                <button id="empleables" type="button" class="btn btn-warning">Run Employability</button>
             </div>
         </div>
     </section>
@@ -38,7 +38,7 @@
   
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade btn-responsive btninter" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -50,19 +50,19 @@
         <div class="modal-body">
                 <form>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombres:</label>
+                    <label for="inputEmail3" class="col-2 col-form-label">Nombres:</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="nombre" placeholder="Camila Corrales">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Puntaje Técnico:</label>
+                    <label for="inputPassword3" class="col-2 col-form-label">Puntaje Técnico:</label>
                     <div class="col-sm-10">
                       <input type="number" class="form-control" id="puntajeTecnico" placeholder="20%">
                     </div>
                   </div> 
                   <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Puntaje Hse:</label>
+                    <label for="inputPassword3" class="col-2 col-form-label">Puntaje Hse:</label>
                     <div class="col-sm-10">
                       <input type="number" class="form-control" id="puntajeHse" placeholder="20%">
                     </div>
@@ -70,16 +70,19 @@
                 </form>          
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button id="btnAgregar" type="button"  data-dismiss="modal" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+          <button id="btnAgregar" type="button"  data-dismiss="modal" class="btn btn-warning">Guardar Cambios</button>
         </div>
       </div>
     </div>
   
     </section>
     <section>
-        <h4>Resultado</h4>
-        <div id="resultado"></div>
+        <div class="container" id="cont-resultado">
+                <h4 id="letterResultado">Resultado:</h4>
+                <div id="resultado"></div>
+        </div>
+        
     </section>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

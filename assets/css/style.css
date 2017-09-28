@@ -1,3 +1,21 @@
-* {
-    outline-color: rebeccapurple;
+body {
+    background:#FFF0F5 !important;
+    font-size: 16px !important;
+    font-size: 1.2rem !important;
+    line-height: 1.1 !important;
+    font-weight: normal !important;
+    color: #333 !important;
+    font-family: 'Varela Round', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+}
+#titulo{
+    background-color: #FFF0F5;
+}
+#botones{
+    position: relative;
+    left: 180px;
+}
+h4 {
+    font-weight: 700 !important;
 }
